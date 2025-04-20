@@ -123,4 +123,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 Raghav - [@some1uknow25](https://twitter.com/Some1Uknow25)
 
-Project Link: [https://github.com/yourusername/SolaMate](https://github.com/yourusername/SolaMate)
+Project Link: [https://github.com/yourusername/SolaMate](https://github.com/some1uknow/SolaMate)

@@ -1,6 +1,7 @@
 import Waitlist from '../schemas/waitlist.js';
 
 export const joinWaitlist = async (req, res) => {
+  console.log('Received request to join waitlist:', req.body);
   try {
     const { email } = req.body;
     

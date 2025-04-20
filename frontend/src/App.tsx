@@ -1,16 +1,37 @@
-import { useState } from 'react';
-import { Toaster, toast } from 'react-hot-toast';
-
+import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the email to your backend
-    toast.success('Welcome to the SolaMate family! 💝 We\'ll notify you when we launch!');
-    setIsModalOpen(false);
-    setEmail('');
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/waitlist/join`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to join waitlist");
+      }
+
+      toast.success(
+        "Welcome to the SolaMate family! 💝 We'll notify you when we launch!"
+      );
+      setIsModalOpen(false);
+      setEmail("");
+    } catch (error) {
+      toast.error("Oops! Something went wrong. Please try again.");
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -19,12 +40,16 @@ function App() {
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className={`absolute text-${Math.random() > 0.5 ? '5' : '3'}xl text-[#800000] opacity-${Math.random() > 0.5 ? '20' : '30'} animate-float-${i % 3 + 1}`}
+            className={`absolute text-${
+              Math.random() > 0.5 ? "5" : "3"
+            }xl text-[#800000] opacity-${
+              Math.random() > 0.5 ? "20" : "30"
+            } animate-float-${(i % 3) + 1}`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${i * 0.5}s`,
-              filter: 'blur(1px)',
+              filter: "blur(1px)",
             }}
           >
             ♥
@@ -40,11 +65,17 @@ function App() {
           Where Solana devs find their soulmates
         </p>
         <div className="space-y-4 mb-12 text-lg font-['Outfit']">
-          <p className="animate-slideUp" style={{ animationDelay: '0.2s' }}>Finding love is hard.</p>
-          <p className="animate-slideUp" style={{ animationDelay: '0.4s' }}>Finding love as a Solana dev? Almost impossible.</p>
-          <p className="animate-slideUp" style={{ animationDelay: '0.6s' }}>Swap left, swap right... maybe mint a soulmate 🫠</p>
+          <p className="animate-slideUp" style={{ animationDelay: "0.2s" }}>
+            Finding love is hard.
+          </p>
+          <p className="animate-slideUp" style={{ animationDelay: "0.4s" }}>
+            Finding love as a Solana dev? Almost impossible.
+          </p>
+          <p className="animate-slideUp" style={{ animationDelay: "0.6s" }}>
+            Swap left, swap right... maybe mint a soulmate 🫠
+          </p>
         </div>
-        <button 
+        <button
           onClick={() => setIsModalOpen(true)}
           className="bg-gradient-to-r from-[#800000] to-[#ff4444] text-[#faf0e6] px-12 py-5 rounded-full text-xl font-bold hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-[#800000]/20 animate-pulse"
         >
@@ -60,7 +91,8 @@ function App() {
               Join Our Love Chain ❤️
             </h2>
             <p className="text-gray-600 mb-6 font-['Outfit']">
-              Be the first to know when we launch and find your perfect match in the Solana ecosystem!
+              Be the first to know when we launch and find your perfect match in
+              the Solana ecosystem!
             </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
@@ -91,6 +123,7 @@ function App() {
         </div>
       )}
       <Toaster position="bottom-center" />
+      <Analytics />
     </div>
   );
 }
