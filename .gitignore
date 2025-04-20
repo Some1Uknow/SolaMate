@@ -1,0 +1,47 @@
+# Common .gitignore for both backend (Express.js) and frontend (React)
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+/build/
+/dist/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# React-specific
+/public/static/
+*.cache
+*.env.development.local
+*.env.production.local
+
+# Express-specific
+/uploads/
