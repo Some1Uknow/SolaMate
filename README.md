@@ -4,7 +4,9 @@ SolaMate is a modern dating app designed specifically for Solana developers and 
 
 ## Demo Video
 
-![SolaMate Demo Video](https://youtu.be/LxDCYwtLrwo)
+<a href="https://youtu.be/LxDCYwtLrwo">
+  <img src="https://img.youtube.com/vi/LxDCYwtLrwo/0.jpg" alt="SolaMate Demo Video" width="600">
+</a>
 
 ## 1. Project Overview
 
