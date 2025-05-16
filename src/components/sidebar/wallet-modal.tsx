@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Loader2, X } from "lucide-react";
-import { cn } from "@/utils/cn";
 import { userHasWallet } from "@civic/auth-web3";
 import { useUser } from "@civic/auth-web3/react";
 import Image from "next/image";
@@ -22,7 +21,6 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const [isCreatingWallet, setIsCreatingWallet] = useState(false);
   const [solanaBalance, setSolanaBalance] = useState<string | null>(null);
   const [usdBalance, setUsdBalance] = useState<string | null>(null);
-  const [solPrice, setSolPrice] = useState<number | null>(null);
   const userContext = useUser();
   // Function to create a wallet if user doesn't have one
   const handleCreateWallet = async () => {
@@ -55,8 +53,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   // Function to fetch SOL price in USD and update state
   const fetchSolPriceAndUpdateState = async (solBalance: string) => {
     try {
-      const { solPrice, usdBalance } = await fetchSolPrice(solBalance);
-      setSolPrice(solPrice);
+      const { usdBalance } = await fetchSolPrice(solBalance);
       setUsdBalance(usdBalance);
     } catch (error) {
       console.error("Error fetching SOL price:", error);
@@ -69,7 +66,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     if (isOpen && userContext && userHasWallet(userContext)) {
       fetchBalance();
     }
-  }, [isOpen, userContext]);
+  }, [isOpen, userContext, fetchBalance]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose}>
@@ -179,7 +176,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                     No Wallet Found
                   </h3>
                   <p className="text-sm text-muted-foreground text-center mb-6 max-w-md">
-                    You don't have a Solana wallet yet. Create one to start
+                    You don&apos;t have a Solana wallet yet. Create one to start
                     using crypto features in this application.
                   </p>{" "}
                   <button

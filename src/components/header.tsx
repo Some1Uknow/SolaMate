@@ -1,6 +1,5 @@
 'use client";'
 import Link from "next/link";
-import { Button } from "./ui/button";
 import { Logo } from "./ui/logo";
 import { UserButton } from "@civic/auth-web3/react";
 

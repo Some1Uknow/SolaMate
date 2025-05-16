@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 export function Testimonials() {
   return (
     <section id="testimonials" className="py-20 relative">
@@ -21,7 +19,7 @@ export function Testimonials() {
               ★★★★★
             </div>
             <blockquote className="text-gray-700 dark:text-gray-300 mb-6">
-              "We matched after both building Solana NFT projects. Our first date was pair programming. Now we're married and run a successful Solana studio together!"
+              &quot;We matched after both building Solana NFT projects. Our first date was pair programming. Now we&apos;re married and run a successful Solana studio together!&quot;
             </blockquote>
             <div className="flex items-center">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-peach-400 to-red-500 flex items-center justify-center text-white font-semibold">
@@ -40,7 +38,7 @@ export function Testimonials() {
               ★★★★★
             </div>
             <blockquote className="text-gray-700 dark:text-gray-300 mb-6">
-              "I was skeptical about signing a transaction just to swipe right, but it actually filtered out people who weren't serious. Found my perfect match!"
+              &quot;I was skeptical about signing a transaction just to swipe right, but it actually filtered out people who weren&apos;t serious. Found my perfect match!&quot;
             </blockquote>
             <div className="flex items-center">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-peach-400 to-red-500 flex items-center justify-center text-white font-semibold">
@@ -59,7 +57,7 @@ export function Testimonials() {
               ★★★★★
             </div>
             <blockquote className="text-gray-700 dark:text-gray-300 mb-6">
-              "The NFT we received when we matched is now our profile picture everywhere. It's not just a dating app, it's a community of like-minded devs."
+              &quot;The NFT we received when we matched is now our profile picture everywhere. It&apos;s not just a dating app, it&apos;s a community of like-minded devs.&quot;
             </blockquote>
             <div className="flex items-center">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-peach-400 to-red-500 flex items-center justify-center text-white font-semibold">

@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
-import { Users, Heart, MessageCircle, Wallet, User } from "lucide-react";
+import { Users, Heart, MessageCircle, Wallet } from "lucide-react";
 import WalletModal from "./wallet-modal";
 import { UserButton } from "@civic/auth-web3/react";
 
@@ -13,21 +13,20 @@ interface SidebarProps {
 }
 
 export function Sidebar({ className }: SidebarProps) {
-  const router = useRouter();
   const pathname = usePathname();
   const [isWalletOpen, setIsWalletOpen] = useState(false);
 
   // Effect for the glow hover effect
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      document.querySelectorAll(".glow-effect").forEach((item: any) => {
+      document.querySelectorAll(".glow-effect").forEach((item: Element) => {
         const rect = item.getBoundingClientRect();
 
-        item.style.setProperty(
+        (item as HTMLElement).style.setProperty(
           "--x",
           `${((e.clientX - rect.left) / rect.width) * 100}%`
         );
-        item.style.setProperty(
+        (item as HTMLElement).style.setProperty(
           "--y",
           `${((e.clientY - rect.top) / rect.height) * 100}%`
         );
