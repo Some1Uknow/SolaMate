@@ -2,6 +2,10 @@
 
 SolaMate is a modern dating app designed specifically for Solana developers and enthusiasts, making it easy to find your crypto soulmate with on-chain swipes and matches.
 
+## Demo Video
+
+![SolaMate Demo Video](./SolaMate.mp4)
+
 ## 1. Project Overview
 
 SolaMate is a modern dating application built specifically for Solana developers and blockchain enthusiasts. The core concept is to create a platform where users can connect with like-minded individuals in the crypto space, with all interactions (swipes, matches) being recorded on the Solana blockchain.
