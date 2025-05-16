@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { cn } from "@/utils/cn";
 import { MessageCircle } from "lucide-react";
 
 // Mock data - in a real app, this would come from an API
