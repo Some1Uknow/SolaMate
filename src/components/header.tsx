@@ -1,9 +1,19 @@
-'use client";'
+'use client';
 import Link from "next/link";
+import { useEffect } from "react";
 import { Logo } from "./ui/logo";
-import { UserButton } from "@civic/auth-web3/react";
+import { UserButton, useUser } from "@civic/auth-web3/react";
+import { redirect } from "next/navigation";
 
 export function Header() {
+  const { user } = useUser();
+  
+  useEffect(() => {
+    if (user) {
+      redirect("/profiles");
+    }
+  }, [user]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
       <div className="container flex h-16 items-center justify-between px-4 md:px-8">

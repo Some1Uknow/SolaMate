@@ -38,71 +38,72 @@ export function ProfilesView() {
   const [[currentIndex, direction], setCurrentIndex] = useState([0, 0]);
 
   const paginate = (newDirection: number) => {
-    const nextIndex = (currentIndex + newDirection + mockProfiles.length) % mockProfiles.length;
+    const nextIndex =
+      (currentIndex + newDirection + mockProfiles.length) % mockProfiles.length;
     setCurrentIndex([nextIndex, newDirection]);
   };
 
   const currentProfile = mockProfiles[currentIndex];
-  
-  return (    <div className="h-full flex flex-col">
-      <div className="bg-gradient-to-r from-card via-card to-background p-6 shadow-lg rounded-xl mb-6 border-l-4 border-peach-400 relative overflow-hidden">
-        <div className="absolute -top-12 -right-12 w-32 h-32 bg-peach-400/15 rounded-full blur-2xl pointer-events-none"></div>
-        <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-red-400/15 rounded-full blur-2xl pointer-events-none"></div>
-        <h1 className="text-3xl font-bold text-gradient">Discover Profiles</h1>
-        <p className="text-muted-foreground mt-1">Find your crypto soulmate</p>
+
+  return (
+    <div className="h-full flex flex-col bg-[#0D0D0D]">
+      <div className="bg-[#121212] p-6 mb-4 border-b border-[#333333]">
+        <h1 className="text-2xl font-semibold text-[#E0E0E0]">Discover Profiles</h1>
+        <p className="text-sm text-[#A0A0A0] mt-1">Find your crypto soulmate</p>
       </div>
-      
+
       <div className="flex-1 overflow-hidden relative">
         <div className="absolute inset-0 flex items-center justify-center">
-          <AnimatePresence mode="wait" initial={false} custom={direction}>            <motion.div
+          <AnimatePresence mode="wait" initial={false} custom={direction}>
+            <motion.div
               key={currentProfile.id}
-              custom={direction}              initial={{ opacity: 0, x: direction > 0 ? 300 : -300, rotateZ: direction > 0 ? 5 : -5 }}
-              animate={{ opacity: 1, x: 0, rotateZ: 0 }}
-              exit={{ opacity: 0, x: direction < 0 ? 300 : -300, rotateZ: direction < 0 ? 5 : -5 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-md w-full bg-gradient-to-br from-background to-card/90 rounded-3xl overflow-hidden shadow-xl shadow-peach-400/15 relative border border-peach-200/40"
+              custom={direction}
+              initial={{
+                opacity: 0,
+                x: direction > 0 ? 300 : -300,
+              }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{
+                opacity: 0,
+                x: direction < 0 ? 300 : -300,
+              }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-md w-full bg-[#121212] rounded-lg overflow-hidden shadow-lg shadow-black/30 border border-[#333333]"
             >
-              {/* Decorative elements */}              <div className="absolute -top-20 -right-20 w-40 h-40 bg-peach-400/15 rounded-full blur-3xl pointer-events-none animate-soft-float"></div>
-              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-red-400/15 rounded-full blur-3xl pointer-events-none animate-soft-float animation-delay-1000"></div>
-              <div className="absolute top-40 right-10 w-20 h-20 bg-gradient-to-br from-peach-200/30 to-red-200/30 rounded-full blur-xl opacity-70"></div>
-              
-              <div className="relative h-96 w-full">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50 z-10"></div>
-                <Image 
-                  src={currentProfile.imageUrl} 
-                  alt={currentProfile.name} 
-                  fill 
+              <div className="relative h-80 w-full">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#121212]/90 z-10"></div>
+                <Image
+                  src={currentProfile.imageUrl}
+                  alt={currentProfile.name}
+                  fill
                   className="object-cover"
                   unoptimized // Remove this in a real app
                 />
-                
+
                 {/* Name badge overlay on image */}
-                <div className="absolute bottom-4 left-4 z-20 bg-white/10 backdrop-blur-md p-2 pl-3 pr-6 rounded-xl border border-white/20 shadow-md">
-                  <h2 className="text-2xl font-bold text-white flex items-center gap-1">
-                    {currentProfile.name} 
-                    <span className="text-xl text-white/80">{currentProfile.age}</span>
+                <div className="absolute bottom-4 left-4 z-20 bg-[#121212]/80 backdrop-blur-md p-2 pl-3 pr-4 rounded-md shadow-md">
+                  <h2 className="text-lg font-medium text-[#E0E0E0] flex items-center gap-1">
+                    {currentProfile.name}
+                    <span className="text-base text-[#A0A0A0]">
+                      {currentProfile.age}
+                    </span>
                   </h2>
                 </div>
               </div>
-                <div className="p-7 space-y-6">
-                <div className="relative">
-                  <div className="absolute -top-12 right-0 w-[70px] h-[70px] rounded-2xl -rotate-6 bg-gradient-to-br from-peach-100/50 to-red-100/50 dark:from-peach-500/10 dark:to-red-500/10 border-2 border-peach-300/30 flex items-center justify-center shadow-md animate-heart-beat">
-                    <Heart className="h-8 w-8 text-red-500" fill="#FF546A" fillOpacity="0.3" />
-                  </div>
-                  <div className="pr-16">
-                    <p className="text-foreground/90 leading-relaxed">{currentProfile.bio}</p>
-                  </div>
-                </div>
-                  <div className="pt-3">
-                  <h3 className="font-medium mb-4 flex items-center">
-                    <span className="inline-block w-1.5 h-5 bg-gradient-to-b from-peach-400 to-red-400 rounded-full mr-2.5"></span>
+              <div className="p-5 space-y-5">
+                <p className="text-[#E0E0E0]/90 text-sm leading-relaxed">
+                  {currentProfile.bio}
+                </p>
+                
+                <div>
+                  <h3 className="text-xs font-medium text-[#A0A0A0] uppercase tracking-wider mb-3">
                     Interests
                   </h3>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2">
                     {currentProfile.interests.map((interest: string) => (
-                      <span 
-                        key={interest} 
-                        className="px-4 py-1.5 bg-gradient-to-r from-peach-50/80 to-red-50/80 dark:from-peach-500/10 dark:to-red-500/10 border border-peach-200/30 rounded-full text-sm font-medium text-foreground/90 shadow-sm hover:shadow hover:border-peach-300/40 transition-all duration-300"
+                      <span
+                        key={interest}
+                        className="px-3 py-1 bg-[#1A1A1A] rounded-full text-xs font-medium text-[#A0A0A0]"
                       >
                         {interest}
                       </span>
@@ -110,47 +111,54 @@ export function ProfilesView() {
                   </div>
                 </div>
               </div>
-                <div className="flex justify-center gap-8 p-7 pt-4">
-                <button 
-                  className="flex items-center justify-center w-18 h-18 rounded-2xl bg-gradient-to-br from-red-50/70 to-red-100/70 dark:from-red-600/10 dark:to-red-700/10 border border-red-200/50 shadow-md hover:shadow-lg hover:shadow-red-400/20 hover:scale-110 transform transition-all duration-300 group"
+              <div className="flex justify-center gap-4 p-5 pt-2 border-t border-[#333333]">
+                <button
+                  className="flex items-center justify-center w-12 h-12 rounded-full bg-[#1A1A1A] hover:bg-[#252525] transition-colors shadow-md"
                   aria-label="Dislike profile"
-                >
-                  <X className="h-8 w-8 text-red-500 group-hover:rotate-12 transition-transform duration-300" />
-                </button>
-                <button 
-                  className="flex items-center justify-center w-18 h-18 rounded-2xl bg-gradient-to-br from-peach-50/70 to-peach-100/70 dark:from-peach-600/10 dark:to-peach-700/10 border border-peach-200/50 shadow-md hover:shadow-lg hover:shadow-peach-400/20 hover:scale-110 transform transition-all duration-300 group"
-                  aria-label="Like profile"
-                >
-                  <Heart className="h-8 w-8 text-red-500 group-hover:scale-110 group-hover:animate-heart-beat transition-transform duration-300" />
-                </button>
-              </div>
-                {/* Carousel Navigation */}              <div className="absolute top-[40%] left-0 right-0 -translate-y-1/2 flex justify-between px-4">
-                <button 
-                  onClick={() => paginate(-1)}
-                  className="flex items-center justify-center w-14 h-14 rounded-xl bg-white/20 backdrop-blur-md text-white border border-white/30 shadow-lg hover:bg-white/30 transform hover:scale-110 hover:-translate-x-1 transition-all duration-300 group"
-                  aria-label="Previous profile"
-                >
-                  <ChevronLeft className="h-7 w-7 group-hover:translate-x-[-2px] transition-transform duration-300" />
-                </button>
-                <button 
                   onClick={() => paginate(1)}
-                  className="flex items-center justify-center w-14 h-14 rounded-xl bg-white/20 backdrop-blur-md text-white border border-white/30 shadow-lg hover:bg-white/30 transform hover:scale-110 hover:translate-x-1 transition-all duration-300 group"
-                  aria-label="Next profile"
                 >
-                  <ChevronRight className="h-7 w-7 group-hover:translate-x-[2px] transition-transform duration-300" />
+                  <X className="h-5 w-5 text-[#A0A0A0]" />
+                </button>
+                <button
+                  className="flex items-center justify-center w-12 h-12 rounded-full bg-[#FF1E56] hover:bg-[#FF3A6B] transition-colors shadow-[0_0_15px_rgba(255,30,86,0.4)]"
+                  aria-label="Like profile"
+                  onClick={() => paginate(1)}
+                >
+                  <Heart className="h-5 w-5 text-white" />
                 </button>
               </div>
               
-              {/* Carousel Indicators */}              <div className="absolute bottom-5 right-5 flex gap-2.5 bg-black/25 backdrop-blur-sm p-2.5 rounded-full border border-white/10 shadow-lg">
+              {/* Carousel Navigation */}
+              <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-4 pointer-events-none">
+                <button
+                  onClick={() => paginate(-1)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-[#121212]/80 backdrop-blur-sm text-[#E0E0E0] shadow-md pointer-events-auto hover:bg-[#121212] transition-colors"
+                  aria-label="Previous profile"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => paginate(1)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-[#121212]/80 backdrop-blur-sm text-[#E0E0E0] shadow-md pointer-events-auto hover:bg-[#121212] transition-colors"
+                  aria-label="Next profile"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
+              
+              {/* Carousel Indicators */}
+              <div className="absolute bottom-3 right-1/2 translate-x-1/2 flex gap-1.5 p-1.5 rounded-full bg-[#0D0D0D]/50 backdrop-blur-sm">
                 {mockProfiles.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentIndex([index, index > currentIndex ? 1 : -1])}
+                    onClick={() =>
+                      setCurrentIndex([index, index > currentIndex ? 1 : -1])
+                    }
                     className={cn(
-                      "transition-all duration-300 rounded-full",
-                      index === currentIndex 
-                        ? "w-8 h-3 bg-gradient-to-r from-peach-400 to-red-500 shadow-md shadow-red-400/30" 
-                        : "w-3 h-3 bg-white/50 hover:bg-white/70"
+                      "transition-all duration-200 rounded-full",
+                      index === currentIndex
+                        ? "w-6 h-2 bg-[#FF1E56] shadow-[0_0_8px_rgba(255,30,86,0.5)]"
+                        : "w-2 h-2 bg-[#333333] hover:bg-[#505050]"
                     )}
                     aria-label={`Go to profile ${index + 1}`}
                   />
